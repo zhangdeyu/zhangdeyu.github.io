@@ -12,4 +12,4 @@ highlighter: pygments
 pygments: true
 safe: true
 paginate: 20
-about: "这里是Derek的个人博客~"
+about: ""

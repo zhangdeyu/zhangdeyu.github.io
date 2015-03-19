@@ -5,6 +5,21 @@ comments: no
 ---
 
 {{ site.about }}
+>####个人简介：
+>动物医学专业大四学生党一枚，大一在机缘巧合下开始接触`PHP`，后来开始学习 `JavaScript`、`HTML`、`CSS` ，目前正在努力学习各种知识中。
+>####掌握技能：
+> - `PHP`
+- `HTML`
+- `CSS`
+- `JavaScript`
+- `Java`
+>
+>####项目开发经验
+> - [我们网](http://www.ewe.com.cn)
+> - [人文华农](http://c.ewe.com.cn)
+> - [湖北华南环保科技](http://www.huanbao8828.com)
+> - [光谷医院](http://www.whovh.com)
+> - [外卖口袋](http://www.waimaikoudai.com)
 
 ----
 
