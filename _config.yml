@@ -8,6 +8,7 @@ email: imzhangdeyu@126.com
 duoshuo: 
 weibo: 2805290830
 github: zhangdeyu
+highlighter: pygments
 pygments: true
 safe: true
 paginate: 20
