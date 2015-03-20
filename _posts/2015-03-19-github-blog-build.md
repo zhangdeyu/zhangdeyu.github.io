@@ -1,5 +1,5 @@
 ---
-date: 2015-03-18 21:48:30+00:00
+date: 2015-03-19
 layout: post
 title: github博客搭建完成
 categories: github

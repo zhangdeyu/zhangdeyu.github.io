@@ -1,5 +1,5 @@
 ---
-date: 2015-03-20 09:22:30+00:00
+date: 2015-03-20
 layout: post
 title: PHP数组排序基本方法
 categories: php
