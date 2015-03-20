@@ -7,12 +7,7 @@ comments: no
 {{ site.about }}
 >####个人简介：
 >动物医学专业大四学生党一枚，大一在机缘巧合下开始接触`PHP`，后来开始学习 `JavaScript`、`HTML`、`CSS` ，目前正在努力学习各种知识中。
->####掌握技能：
-> - `PHP`
-- `HTML`
-- `CSS`
-- `JavaScript`
-- `Java`
+
 >
 >####项目开发经验
 > - [我们网](http://www.ewe.com.cn)
@@ -28,7 +23,7 @@ comments: no
 {% if site.qq %}
 ＱＱ：[{{ site.qq }}](tencent://message/?uin={{ site.qq }})
 {% endif %}
-网站：[{{ site.name }}]({{ site.url }})
+<!-- 网站：[{{ site.name }}]({{ site.url }}) -->
 
 邮箱：[{{ site.email }}](mailto:{{ site.email }})
 
@@ -39,3 +34,4 @@ GitHub : [http://github.com/{{ site.github }}](http://github.com/{{ site.github 
 {% if site.weibo %}
 [![新浪微博](http://service.t.sina.com.cn/widget/qmd/{{ site.weibo }}/f78fbcd2/1.png)](http://weibo.com/u/{{ site.weibo }})
 {% endif %}
+<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=1&isFans=0&uid=2805290830&verifier=7e9eea32&dpc=1"></iframe>
