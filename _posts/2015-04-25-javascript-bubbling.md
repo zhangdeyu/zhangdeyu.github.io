@@ -21,7 +21,7 @@ JavaScript中的冒泡问题来源很简单
 w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true
 
 
-```window.event? window.event.cancelBubble = true : e.stopPropagation(); ```
+```window.event? window.event.cancelBubble = true : e.stopPropagation();```
 
 ###对于默认事件的阻止
 
