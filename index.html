@@ -1,56 +1,629 @@
----
-title: 首页
-layout: page
----
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Stay hungry, Stay foolish</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stay hungry, Stay foolish">
+<meta property="og:url" content="http://zhangdeyu.github.io/index.html">
+<meta property="og:site_name" content="Stay hungry, Stay foolish">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Stay hungry, Stay foolish">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="Stay hungry, Stay foolish" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" class="js-avatar">
+			
+		</a>
 
-<ul class="listing">
-{% for post in paginator.posts %}
-  {% capture y %}{{post.date | date:"%Y"}}{% endcapture %}
-  {% if year != y %}
-    {% assign year = y %}
-    <li class="listing-seperator">{{ y }}</li>
-  {% endif %}
-  <li class="listing-item">
-    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-    {% if site.truncate %}
-    <p>{{ post.content | strip_html | truncate: site.truncate }}</p>
-    {% endif%}
-  </li>
-{% endfor %}
-</ul>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Derek</a></h1>
+		</hgroup>
 
-<div id="post-pagination" class="paginator">
+		
+		<p class="header-subtitle">Derek`s blog</p>
+		
 
-  {% if paginator.previous_page %}
-    {% if paginator.previous_page == 1 %}
-    <a href="/"><前页</a>
-    {% else %}
-    <a href="/page{{paginator.previous_page}}">&lt;前页</a>
-    {% endif %}
-  {% else %}
-    <span class="previous disabled">&lt;前页</span>
-  {% endif %}
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
 
-      {% if paginator.page == 1 %}
-      <span class="current-page">1</span>
-      {% else %}
-      <a href="/">1</a>
-      {% endif %}
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhangdeyu" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/事件冒泡/" style="font-size: 10px;">事件冒泡</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/数组排序/" style="font-size: 10px;">数组排序</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://7demo.github.io/">7Demo</a>
+			        
+			        </div>
+				</section>
+				
 
-    {% for count in (2..paginator.total_pages) %}
-      {% if count == paginator.page %}
-      <span class="current-page">{{count}}</span>
-      {% else %}
-      <a href="/page{{count}}">{{count}}</a>
-      {% endif %}
-    {% endfor %}
-
-  {% if paginator.next_page %}
-    <a class="next" href="/page{{paginator.next_page}}">后页&gt;</a>
-  {% else %}
-    <span class="next disabled" >后页&gt;</span>
-  {% endif %}
-  (共{{ paginator.total_posts }}篇)
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的烟火</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
 </div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Derek</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Derek</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Derek`s blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhangdeyu" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-关于mvc架构的一些认识" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/27/关于mvc架构的一些认识/" class="article-date">
+  	<time datetime="2015-04-27T02:09:29.000Z" itemprop="datePublished">2015-04-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/27/关于mvc架构的一些认识/">关于mvc架构的一些认识</a>
+    </h1>
+  
 
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前段时间在面试中面试官问到了对于mvc的一些认识，近期根据自己的认知对mvc的内容做了一下总结</p>
+<hr>
+<p>维基百科对<a href="http://zh.wikipedia.org/zh/MVC" target="_blank" rel="external">mvc</a>的介绍是：<br>&gt;<br>MVC模式（Model-View-Controller）是软件工程中的一种软件架构模式，把软件系统分为三个基本部分：模型（Model）、视图（View）和控制器（Controller）。</p>
+<p>我认为在开发过程中，将应用分为mvc三层，主要作用是<strong>将数据层，控制层以及表示层代码分开</strong></p>
+<ul>
+<li>模型(Model)主要进行数据库查询等的数据层操作</li>
+<li>控制器(controller)起到对模型和视图的组织，控制应用程序的整个流程</li>
+<li>视图(View)起到表示层的作用，对一些信息进行展现，如显示数据</li>
+</ul>
+<hr>
+<p>结合自己以往开发中的一些经验，在web开发中mvc有利于把问题分开结局，易于控制，便于扩展，更利于后期功能的更新，实现高内聚、低耦合。<br>这样每个层都能各司其职，如果某一层需求发生变化，只需要改变这一层即可而不会影响到其它层</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MVC/">MVC</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Web/">Web</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-浅谈js的冒泡机制" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/27/浅谈js的冒泡机制/" class="article-date">
+  	<time datetime="2015-03-27T02:09:29.000Z" itemprop="datePublished">2015-03-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/27/浅谈js的冒泡机制/">浅谈JavaScript的冒泡机制</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JavaScript中的冒泡问题来源很简单</p>
+<p>比如当你在一个元素(element1)里面嵌套了一个元素(element2)，并且两个元素都分别对OnClick事件进行处理，那么当点击嵌套在里面的元素(element2)时，则elemet1以及elemet2的OnClick事件都被触发</p>
+<hr>
+<p>对于冒泡事件，比较完整的解释是：</p>
+<blockquote>
+<p>在一个对象上触发某类事件（比如单击onclick事件），如果此对象定义了此事件的处理程序，那么此事件就会调用这个处理程序，如果没有定义此事件处理程序或者事件返回true，那么这个事件会向这个对象的父级对象传播，从里到外，直至它被处理（父级对象所有同类事件都将被激活），或者它到达了对象层次的最顶层，即document对象（有些浏览器是window）。</p>
+</blockquote>
+<h3 id="对于冒泡的阻止">对于冒泡的阻止</h3><p>w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">window</span>.<span class="keyword">event</span>? <span class="keyword">window</span>.<span class="keyword">event</span>.cancelBubble = true : e.stopPropagation();</span><br></pre></td></tr></table></figure>
+<h3 id="对于默认事件的阻止">对于默认事件的阻止</h3><p>w3c的方法是e.preventDefault()，IE则是使用e.returnValue = false;</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">window</span>.<span class="keyword">event</span>? <span class="keyword">window</span>.<span class="keyword">event</span>.returnValue = false : e.preventDefault();</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事件冒泡/">事件冒泡</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Web/">Web</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-前端笔试中的一些JavaScript题目" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/26/前端笔试中的一些JavaScript题目/" class="article-date">
+  	<time datetime="2015-03-26T02:09:29.000Z" itemprop="datePublished">2015-03-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/26/前端笔试中的一些JavaScript题目/">前端笔试中的一些JavaScript题目</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>考察this</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> length = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	length: <span class="number">5</span>,</span><br><span class="line">	method: <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">		fn();</span><br><span class="line">		<span class="built_in">arguments</span>[<span class="number">0</span>]();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.method(fn, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p><code>输出：10 2</code></p>
+<p>取对象除了点操作符还可以用中括号，所以第二次执行时相当于arguments调用方法，this指向arguments，而这里传了两个参数，故输出arguments长度为2。</p>
+<hr>
+<blockquote>
+<p>var和函数的提前声明</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br><span class="line">fn(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p><code>输出：function  a() {} 2</code></p>
+<p>var和function是会提前声明的，而且function是优先于var声明的（如果同时存在的话），所以提前声明后输出的a是个function，然后代码往下执行a进行重新赋值了，故第二次输出是2。</p>
+<hr>
+<blockquote>
+<p>局部变量和全局变量</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span> (f === <span class="literal">true</span>) &#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> b = <span class="number">20</span>;</span><br><span class="line">	c = <span class="number">30</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn();</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br><span class="line"><span class="built_in">console</span>.log(c);</span><br></pre></td></tr></table></figure>
+<p><code>输出：10 error</code></p>
+<p>只有function(){}内新声明的才能是局部变量，while{…}、if{…}、for(..) 之内的都是全局变量（除非本身包含在function内）。</p>
+<hr>
+<blockquote>
+<p>变量隐式声明</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="string">'a'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure>
+<p><code>输出：10</code></p>
+<p>代码还没执行前，a变量已经被声明，于是 ‘a’ in window 返回true，a被赋值。</p>
+<hr>
+<blockquote>
+<p>给基本类型数据添加属性，不报错，但取值时是undefined</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">a.pro = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a.pro + a);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s = <span class="string">'hello'</span>;</span><br><span class="line">s.pro = <span class="string">'world'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(s.pro + s);</span><br></pre></td></tr></table></figure>
+<p><code>输出：NaN undefinedhello</code></p>
+<p>给基本类型数据加属性不报错，但是引用的话返回undefined，10+undefined返回NaN，而undefined和string相加时转变成了字符串。</p>
+<hr>
+<blockquote>
+<p>函数声明优于变量声明</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> fn);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> fn;</span><br></pre></td></tr></table></figure>
+<p><code>输出：function</code></p>
+<p>在代码逐行执行前，函数声明和变量声明会提前进行，而函数声明又会优于变量声明，这里的优于可以理解为晚于变量声明后，如果函数名和变量名相同，函数声明就能覆盖变量声明。</p>
+<hr>
+<blockquote>
+<p>判断一个字符串中出现次数最多的字符，并统计次数</p>
+</blockquote>
+<p><strong>使用正则表达式</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">'aaabbbcccaaabbbaaabbbbbbbbbb'</span>;</span><br><span class="line"><span class="keyword">var</span> a = s.split(<span class="string">''</span>);</span><br><span class="line">a.sort();</span><br><span class="line">s = a.join(<span class="string">''</span>);</span><br><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/(\w)\1*/g</span>;</span><br><span class="line"><span class="keyword">var</span> ans = s.match(pattern);</span><br><span class="line">ans.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.length &lt; b.length;</span><br><span class="line">&#125;);;</span><br><span class="line"><span class="built_in">console</span>.log(ans[<span class="number">0</span>][<span class="number">0</span>] + <span class="string">': '</span> + ans[<span class="number">0</span>].length);</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>URL参数解析</p>
+</blockquote>
+<p><strong>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象，如： var url =” <a href="http://localhost/index.php?key0=0&amp;key1=1&amp;key2=2" target="_blank" rel="external">http://localhost/index.php?key0=0&amp;key1=1&amp;key2=2</a>“</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseQueryString</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">	<span class="keyword">var</span> a = url.split(<span class="string">'?'</span>);</span><br><span class="line">	<span class="keyword">if</span>(a === <span class="number">1</span>) <span class="keyword">return</span> obj;</span><br><span class="line">	<span class="keyword">var</span> b = a[<span class="number">1</span>].split(<span class="string">'&amp;'</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, length = b.length; i &lt; length; i++) &#123;</span><br><span class="line">		<span class="keyword">var</span> c = b[i].split(<span class="string">'='</span>);</span><br><span class="line">		obj[c[<span class="number">0</span>]] = c[<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> url =<span class="string">" http://localhost/index.php?key0=0&amp;key1=1&amp;key2=2"</span>;</span><br><span class="line"><span class="keyword">var</span> obj = parseQueryString(url);</span><br><span class="line"><span class="built_in">console</span>.log(obj.key0, obj.key1, obj.key2);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试题/">面试题</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Web/">Web</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-PHP数组四种基本排序方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/25/PHP数组四种基本排序方法/" class="article-date">
+  	<time datetime="2015-03-25T02:09:29.000Z" itemprop="datePublished">2015-03-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/25/PHP数组四种基本排序方法/">PHP数组四种基本排序方法</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="PHP实现四种基本排序方法">PHP实现四种基本排序方法</h1><p>数组有四种基本的排序方法：</p>
+<ul>
+<li>冒泡排序</li>
+<li>选择排序</li>
+<li>插入排序</li>
+<li>快速排序</li>
+</ul>
+<hr>
+<p>本文仅针对一维数组进行简单排序</p>
+<hr>
+<h2 id="冒泡排序">冒泡排序</h2><blockquote>
+<p>基本思想：两两比较，发现两数值的次序相反时进行交换</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bubblesort</span><span class="params">(<span class="variable">$arr</span>)</span></span>&#123;</span><br><span class="line">    <span class="variable">$len</span>=count(<span class="variable">$arr</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span> &lt;<span class="variable">$len</span>-<span class="number">1</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="variable">$j</span>=<span class="variable">$i</span>+<span class="number">1</span>; <span class="variable">$j</span> &lt;<span class="variable">$len</span>; <span class="variable">$j</span>++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="variable">$arr</span>[<span class="variable">$j</span>]&lt;<span class="variable">$arr</span>[<span class="variable">$i</span>]) &#123;</span><br><span class="line">				<span class="variable">$tmp</span>=<span class="variable">$arr</span>[<span class="variable">$i</span>];</span><br><span class="line">				<span class="variable">$arr</span>[<span class="variable">$i</span>]=<span class="variable">$arr</span>[<span class="variable">$j</span>];</span><br><span class="line">				<span class="variable">$arr</span>[<span class="variable">$j</span>]=<span class="variable">$tmp</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$arr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="选择排序">选择排序</h2><blockquote>
+<p>基本思想：对比数组中前一个元素跟后一个元素的大小，如果后面的元素比前面的元素小则用一个变量来记住他的位置，接着第二次比较，前面“后一个元素”现变成了“前一个元素”，继续跟他的“后一个元素”进行比较如果后面的元素比他要小则用变量k记住它在数组中的位置(下标)，等到循环结束的时候，我们应该找到了最小的那个数的下标了，然后进行判断，如果这个元素的下标不是第一个元素的下标，就让第一个元素跟他交换一下值，这样就找到整个数组中最小的数了。然后找到数组中第二小的数，让他跟数组中第二个元素交换一下值，以此类推。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">select</span><span class="params">(<span class="variable">$arr</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span> &lt;count(<span class="variable">$arr</span>)-<span class="number">1</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">		<span class="variable">$p</span>=<span class="variable">$i</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="variable">$j</span>=<span class="variable">$i</span>+<span class="number">1</span>; <span class="variable">$j</span> &lt;count(<span class="variable">$arr</span>); <span class="variable">$j</span>++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(<span class="variable">$arr</span>[<span class="variable">$p</span>]&gt;<span class="variable">$arr</span>[<span class="variable">$j</span>])&#123;</span><br><span class="line">				<span class="variable">$p</span>=<span class="variable">$j</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="variable">$p</span>!=<span class="variable">$i</span>) &#123;</span><br><span class="line">			<span class="variable">$tmp</span>=<span class="variable">$arr</span>[<span class="variable">$i</span>];</span><br><span class="line">			<span class="variable">$arr</span>[<span class="variable">$i</span>]=<span class="variable">$arr</span>[<span class="variable">$p</span>];</span><br><span class="line">			<span class="variable">$arr</span>[<span class="variable">$p</span>]=<span class="variable">$tmp</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$arr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="插入排序">插入排序</h2><blockquote>
+<p>基本思想：每次将一个待排序的元素，按其数值的大小插入到前面已经排好序的子数组中的适当位置，直到全部元素插入完成为止。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertsort</span><span class="params">(<span class="variable">$arr</span>)</span></span>&#123;</span><br><span class="line">    <span class="variable">$len</span>=count(<span class="variable">$arr</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">1</span>; <span class="variable">$i</span> &lt;<span class="variable">$len</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">		<span class="variable">$tmp</span>=<span class="variable">$arr</span>[<span class="variable">$i</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="variable">$j</span>=<span class="variable">$i</span>-<span class="number">1</span>; <span class="variable">$j</span> &gt;=<span class="number">0</span> ; <span class="variable">$j</span>--) &#123;</span><br><span class="line">			<span class="keyword">if</span> (<span class="variable">$tmp</span>&lt;<span class="variable">$arr</span>[<span class="variable">$j</span>]) &#123;</span><br><span class="line">				<span class="variable">$arr</span>[<span class="variable">$j</span>+<span class="number">1</span>]=<span class="variable">$arr</span>[<span class="variable">$j</span>];</span><br><span class="line">				<span class="variable">$arr</span>[<span class="variable">$j</span>]=<span class="variable">$tmp</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$arr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="快速排序">快速排序</h2><blockquote>
+<p>基本思想：快速排序（Quicksort）是对冒泡排序的一种改进，通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quicksort</span><span class="params">(<span class="variable">$arr</span>)</span></span>&#123;</span><br><span class="line">    <span class="variable">$len</span>=count(<span class="variable">$arr</span>);</span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$len</span>&gt;<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="variable">$middle</span>=<span class="variable">$arr</span>[<span class="number">0</span>];</span><br><span class="line">		<span class="variable">$left</span>=<span class="keyword">array</span>();</span><br><span class="line">		<span class="variable">$right</span>=<span class="keyword">array</span>();</span><br><span class="line">		<span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">1</span>; <span class="variable">$i</span> &lt;<span class="variable">$len</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(<span class="variable">$arr</span>[<span class="variable">$i</span>]&gt;<span class="variable">$middle</span>)&#123;</span><br><span class="line">				<span class="variable">$right</span>[]=<span class="variable">$arr</span>[<span class="variable">$i</span>];</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="variable">$left</span>[]=<span class="variable">$arr</span>[<span class="variable">$i</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="variable">$left</span>=quicksort(<span class="variable">$left</span>);</span><br><span class="line">		<span class="variable">$right</span>=quicksort(<span class="variable">$right</span>);</span><br><span class="line">		<span class="keyword">return</span> array_merge(<span class="variable">$left</span>,<span class="keyword">array</span>(<span class="variable">$middle</span>),<span class="variable">$right</span>);</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="variable">$arr</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组排序/">数组排序</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Web/">Web</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/25/hello-world/" class="article-date">
+  	<time datetime="2015-02-24T16:00:00.000Z" itemprop="datePublished">2015-02-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/25/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+  
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Derek
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: true,
+		isPost: false,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
