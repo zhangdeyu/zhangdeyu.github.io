@@ -1533,6 +1533,7 @@ a {
 }
 .article-entry .highlight .line {
   font-size: 14px;
+  line-height: 14px;
   height: 22.400000000000002px;
 }
 .article-entry .gist {
