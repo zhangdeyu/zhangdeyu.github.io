@@ -1,28 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Derek&#39;s Blog</title>
-  <subtitle>Stay hungry, Stay foolish</subtitle>
-  <link href="/atom.xml" rel="self"/>
-  
-  <link href="https://zhangdeyu.github.io/"/>
-  <updated>2017-01-01T12:31:49.000Z</updated>
-  <id>https://zhangdeyu.github.io/</id>
-  
-  <author>
-    <name>Derek</name>
-    
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>JS作用域的问题</title>
-    <link href="https://zhangdeyu.github.io/2017/JS%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E9%97%AE%E9%A2%98.html"/>
-    <id>https://zhangdeyu.github.io/2017/JS作用域的问题.html</id>
-    <published>2017-01-01T11:15:05.000Z</published>
-    <updated>2017-01-01T12:31:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天看到一个前端有趣的前端面试问题，特此记录，分享一下自己的一些看法。</p>
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> JS作用域的问题 · Derek's Blog</title><meta name="description" content="JS作用域的问题 - Derek"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://zhangdeyu.github.io/atom.xml" title="Derek's Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="//assets-cdn.github.com/images/modules/logos_page/Octocat.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/zhangdeyu" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">JS作用域的问题</h1><div class="post-info">2017年1月1日</div><div class="post-content"><p>今天看到一个前端有趣的前端面试问题，特此记录，分享一下自己的一些看法。</p>
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>解释下面代码的输出的结果及原因。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">    <span class="keyword">var</span> a = <span class="number">5</span>;</div><div class="line">    <span class="built_in">console</span>.log(a);  </div><div class="line">    a++;</div><div class="line">    <span class="keyword">var</span> a;</div><div class="line">    fn2();</div><div class="line">    <span class="built_in">console</span>.log(a);</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(a); </div><div class="line">        a = <span class="number">20</span>;</div><div class="line">        b = <span class="number">100</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">fn();</div><div class="line"><span class="built_in">console</span>.log(a); </div><div class="line">a = <span class="number">10</span>;</div><div class="line"><span class="built_in">console</span>.log(a); </div><div class="line"><span class="built_in">console</span>.log(b);</div></pre></td></tr></table></figure>
 <div class="tip"><br>这个题目主要在考察JavaScript中变量的作用域和变量声明提升。掌握了这两个知识点，这个题目就变得很容易解决。<br></div>
@@ -36,64 +12,4 @@
 <h2 id="变量声明提升"><a href="#变量声明提升" class="headerlink" title="变量声明提升"></a>变量声明提升</h2><p>变量声明提升 <code>Variable hoisting</code> 是JAVASCRIPT的一个比较特别的地方。简单的来说就是可以引用在当前代码之后声明的变量但不产生任何异常，被引用的变量将会返回 <code>undefined</code>，所以看上去是将该变量的声明进行了提前。更详细的内容可以参考MDN<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Grammar_and_types#变量声明提升(Variable_hoisting)" target="_blank" rel="external">变量声明提升</a>。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>该问题的代码变为如下形式：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a;  <span class="comment">// 声明全局变量</span></div><div class="line">a = <span class="number">1</span>;  <span class="comment">// 赋值</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a; <span class="comment">// 局部变量声明提升</span></div><div class="line">    <span class="keyword">var</span> a;</div><div class="line">    <span class="built_in">console</span>.log(a);  <span class="comment">// undefined</span></div><div class="line">    a = <span class="number">5</span>;</div><div class="line">    <span class="built_in">console</span>.log(a);  <span class="comment">// 5</span></div><div class="line">    a++; <span class="comment">// 6</span></div><div class="line">    fn2();</div><div class="line">    <span class="built_in">console</span>.log(a); <span class="comment">// 20</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(a); <span class="comment">// 6</span></div><div class="line">        a = <span class="number">20</span>;</div><div class="line">        b = <span class="number">100</span>; <span class="comment">// window.b = 100</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">fn();</div><div class="line"><span class="built_in">console</span>.log(a);  <span class="comment">// 全局</span></div><div class="line">a = <span class="number">10</span>;</div><div class="line"><span class="built_in">console</span>.log(a); <span class="comment">// 10</span></div><div class="line"><span class="built_in">console</span>.log(b); <span class="comment">// 100</span></div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天看到一个前端有趣的前端面试问题，特此记录，分享一下自己的一些看法。&lt;/p&gt;
-&lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h2&gt;&lt;p&gt;解释下面代码的输出的结果及原因。&lt;/p&gt;
-&lt;figur
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>博客更换主题</title>
-    <link href="https://zhangdeyu.github.io/2016/%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98.html"/>
-    <id>https://zhangdeyu.github.io/2016/博客更换主题.html</id>
-    <published>2016-12-16T14:15:43.000Z</published>
-    <updated>2016-12-16T14:31:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>自从16年1月份实习开始，到今年年底算是有一年的实习时间了。断断续续的也学到了一些东西，有很多想法也想记录一下。再加上已经不太喜欢以前的博客主题，便想抽个时间把博客重新整理一下。最近又重新倒腾了一下博客，换了新的主题，一些重新开始。在此记录一下~</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;自从16年1月份实习开始，到今年年底算是有一年的实习时间了。断断续续的也学到了一些东西，有很多想法也想记录一下。再加上已经不太喜欢以前的博客主题，便想抽个时间把博客重新整理一下。最近又重新倒腾了一下博客，换了新的主题，一些重新开始。在此记录一下~&lt;/p&gt;
-
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://zhangdeyu.github.io/2016/hello-world.html"/>
-    <id>https://zhangdeyu.github.io/2016/hello-world.html</id>
-    <published>2016-12-16T03:39:29.000Z</published>
-    <updated>2016-12-16T03:39:29.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
-    
-    
-  </entry>
-  
-</feed>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/博客更换主题.html" class="next">下一篇</a></div><div class="copyright"><p>© 2013 - 2017 <a href="https://zhangdeyu.github.io">Derek</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
