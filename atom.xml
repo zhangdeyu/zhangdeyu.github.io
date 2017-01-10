@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhangdeyu.github.io/"/>
-  <updated>2017-01-01T12:31:49.000Z</updated>
+  <updated>2017-01-10T12:58:20.000Z</updated>
   <id>https://zhangdeyu.github.io/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS-COUNTER-INCREMENT</title>
+    <link href="https://zhangdeyu.github.io/2017/CSS-COUNTER-INCREMENT.html"/>
+    <id>https://zhangdeyu.github.io/2017/CSS-COUNTER-INCREMENT.html</id>
+    <published>2017-01-09T15:10:30.000Z</published>
+    <updated>2017-01-10T12:58:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近碰到一个小需求，在web页面中展示一些规则和条款，并自动对规则和条款进行排序，但规则和条款的数目不定。以前浏览博客时，隐约记得CSS有一个计数器。通过查阅<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Counters" target="_blank" rel="external">MDN</a>后，了解到CSS计数器的值通过使用counter-reset 和 counter-increment 操作，在 content 上应用 counter() 或 counters()函数来显示在页面上。<br><a id="more"></a><br>基本的效果如下所示:</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="ggPpJO" data-default-tab="html,result" data-user="zhangdeyu" data-embed-version="2" data-pen-title="ggPpJO" class="codepen">See the Pen <a href="http://codepen.io/zhangdeyu/pen/ggPpJO/" target="_blank" rel="external">CSS-COUNTER-INCREMENT</a> by Derek (<a href="http://codepen.io/zhangdeyu" target="_blank" rel="external">@zhangdeyu</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>但有时候有一些特殊需求，比如在中文环境下，每一节用一、二、三、四汉语数字表示，每一条内容用阿拉伯数字表示。遇到这种情况怎么解决呢？<br>通过GOOGLE，发现CSS TRICKS里面的一篇文章<a href="https://css-tricks.com/numbering-in-style/" target="_blank" rel="external">Numbering In Style</a>对这些情况进行了解释。counter()支持第二个参数 <code>counter(name, style)</code>。这里的style就是<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/list-style-type" target="_blank" rel="external">list-style-type</a>所支持的值。这些值里面就有<code>cjk-ideographic</code> <code>simp-chinese-informal</code>，可以完美的解决这种需求。</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="PWZPQb" data-default-tab="css,result" data-user="zhangdeyu" data-embed-version="2" data-pen-title="CSS-COUNTER-INCREMENT custom" class="codepen">See the Pen <a href="http://codepen.io/zhangdeyu/pen/PWZPQb/" target="_blank" rel="external">CSS-COUNTER-INCREMENT custom</a> by Derek (<a href="http://codepen.io/zhangdeyu" target="_blank" rel="external">@zhangdeyu</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近碰到一个小需求，在web页面中展示一些规则和条款，并自动对规则和条款进行排序，但规则和条款的数目不定。以前浏览博客时，隐约记得CSS有一个计数器。通过查阅&lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Counters&quot;&gt;MDN&lt;/a&gt;后，了解到CSS计数器的值通过使用counter-reset 和 counter-increment 操作，在 content 上应用 counter() 或 counters()函数来显示在页面上。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>JS作用域的问题</title>
