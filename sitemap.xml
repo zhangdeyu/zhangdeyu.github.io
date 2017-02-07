@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhangdeyu.github.io/resume/index.html</loc>
+    
+    <lastmod>2017-02-07T14:09:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhangdeyu.github.io/2017/interview-questions-in-javascript.html</loc>
+    
+    <lastmod>2017-02-07T06:47:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhangdeyu.github.io/2017/use-symbol-for-icons.html</loc>
     
     <lastmod>2017-01-10T13:43:30.000Z</lastmod>
