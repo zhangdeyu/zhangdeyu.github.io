@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="在HTML中，我们可以使用script标签来加载外部脚本或内联脚本，对于外部脚本来说也可以通过在内联脚本中使用append的方式插入到DOM中。在使用webpack的过程中，通过配置可将公共的依赖打包成vendor.js文件，以及项目的主入口如main.js文件，在开启懒加载的情况下，会根据页面功能依赖通过js动态创建标签的方式动态的加载所需的js文件。 script标签在常规的html代码中，使">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器加载Javascript文件">
+<meta property="og:url" content="https://zhangdeyu.github.io/2019/08/31/load-javascript-file/index.html">
+<meta property="og:site_name" content="Derek&#39;s Blog">
+<meta property="og:description" content="在HTML中，我们可以使用script标签来加载外部脚本或内联脚本，对于外部脚本来说也可以通过在内联脚本中使用append的方式插入到DOM中。在使用webpack的过程中，通过配置可将公共的依赖打包成vendor.js文件，以及项目的主入口如main.js文件，在开启懒加载的情况下，会根据页面功能依赖通过js动态创建标签的方式动态的加载所需的js文件。 script标签在常规的html代码中，使">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-09-01T09:24:26.636Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器加载Javascript文件">
+<meta name="twitter:description" content="在HTML中，我们可以使用script标签来加载外部脚本或内联脚本，对于外部脚本来说也可以通过在内联脚本中使用append的方式插入到DOM中。在使用webpack的过程中，通过配置可将公共的依赖打包成vendor.js文件，以及项目的主入口如main.js文件，在开启懒加载的情况下，会根据页面功能依赖通过js动态创建标签的方式动态的加载所需的js文件。 script标签在常规的html代码中，使">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>浏览器加载Javascript文件</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2017/02/27/css-retina-hairlines/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&text=浏览器加载Javascript文件"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&title=浏览器加载Javascript文件"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&is_video=false&description=浏览器加载Javascript文件"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浏览器加载Javascript文件&body=Check out this article: https://zhangdeyu.github.io/2019/08/31/load-javascript-file/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&title=浏览器加载Javascript文件"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&title=浏览器加载Javascript文件"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&title=浏览器加载Javascript文件"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&title=浏览器加载Javascript文件"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&name=浏览器加载Javascript文件&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#script标签"><span class="toc-number">1.</span> <span class="toc-text">script标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态创建script"><span class="toc-number">2.</span> <span class="toc-text">动态创建script</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        浏览器加载Javascript文件
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Derek's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-31T07:16:26.000Z" itemprop="datePublished">2019-08-31</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/JS/">JS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>在HTML中，我们可以使用script标签来加载外部脚本或内联脚本，对于外部脚本来说也可以通过在内联脚本中使用append的方式插入到DOM中。在使用webpack的过程中，通过配置可将公共的依赖打包成vendor.js文件，以及项目的主入口如main.js文件，在开启懒加载的情况下，会根据页面功能依赖通过js动态创建标签的方式动态的加载所需的js文件。</p>
+<h2 id="script标签"><a href="#script标签" class="headerlink" title="script标签"></a>script标签</h2><p>在常规的html代码中，使用script标签加载的js文件的方式如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge,chrome=1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Examples<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    var app = new Vue(&#123;</span><br><span class="line">        el: '#app',</span><br><span class="line">        data: &#123;</span><br><span class="line">            message: 'Hello Vue!'</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过上述代码我们使用script加载了外部和内联两种脚本，其中内联脚本的执行依赖于外部脚本。所以我们将内敛脚本script标签放在依赖的外部脚本script标签之后。<br>那如果将顺序反过来会出现什么情况呢，运行后会发现控制台的报错</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Uncaught <span class="built_in">ReferenceError</span>: Vue is not defined</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>所以这里有个疑问，vue的cdn文件会保证在new Vue之前加载吗，假设vue的cdn文件很慢，浏览器会保证加载顺序一定是按照我们所写的顺序进行加载吗？以script标签的形式加载时浏览器是串行加载的吗？</p>
+</blockquote>
+<p>首先，浏览器会保证加载的顺序是按照我们写的script标签的顺序来依次加载并执行，并且确保是串行的形式加载。当vue的cdn文件很慢的情况下，页面会一直卡在加载vue的cdn文件的位置，等待文件加载完成。这里就会有一个疑问，浏览器到底是怎么工作的呢？</p>
+<ul>
+<li>对于script文件有装载（下载）和执行（解析）两个阶段</li>
+<li>所有script标签引入的 JavaScript 会按照他们引入的顺序依次被解析，在没有使用 defer 或者 async 的情况下，只有在解析完前面 script元素中的代码之后，才会开始解析后面script元素中的代码。</li>
+</ul>
+<p>那么动态创建的script标签是什么样的执行顺序呢？</p>
+<h2 id="动态创建script"><a href="#动态创建script" class="headerlink" title="动态创建script"></a>动态创建script</h2><p>对于动态创建的script标签，浏览器的加载和执行都是异步的，如果后续的执行依赖于异步加载的js文件，为了保证正常的执行，需要在script标签onload的时候添加回调。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge,chrome=1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Examples<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">loadScript</span>(<span class="params">src, cb</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> el = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span></span><br><span class="line"><span class="javascript">        el.type = <span class="string">"text/javascript"</span>;</span></span><br><span class="line">        el.src = src;</span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>].appendChild(el);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">        cb = cb || <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span></span><br><span class="line"><span class="javascript">        el.onload = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span></span><br><span class="line">            cb()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">    loadScript(<span class="string">'https://cdn.jsdelivr.net/npm/vue'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">'#app'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="javascript">                message: <span class="string">'Hello Vue!'</span></span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于异步加载js脚本，需要考虑的是什么时候用defer以及什么时候用async？<br>常规情况下只需要考虑脚本之间是否有依赖关系，如果有依赖关系，则需要保证顺序执行，使用defer，没有的话使用async。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#script标签"><span class="toc-number">1.</span> <span class="toc-text">script标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态创建script"><span class="toc-number">2.</span> <span class="toc-text">动态创建script</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&text=浏览器加载Javascript文件"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&title=浏览器加载Javascript文件"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&is_video=false&description=浏览器加载Javascript文件"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浏览器加载Javascript文件&body=Check out this article: https://zhangdeyu.github.io/2019/08/31/load-javascript-file/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&title=浏览器加载Javascript文件"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&title=浏览器加载Javascript文件"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&title=浏览器加载Javascript文件"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&title=浏览器加载Javascript文件"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://zhangdeyu.github.io/2019/08/31/load-javascript-file/&name=浏览器加载Javascript文件&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Derek
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
